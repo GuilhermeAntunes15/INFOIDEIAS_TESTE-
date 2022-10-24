@@ -15,17 +15,17 @@ class Funcoes
 
      * */
     public function SeculoAno(int $ano): int {
+
+        $seculo = 0;
+
+        if ($ano > 0) {
+            $seculo = ceil($ano / 100);
+        }
+
+        return $seculo;
         
     }
 
-    
-	
-	
-	
-	
-	
-	
-	
 	/*
 
     Desenvolva uma função que receba como parâmetro um número inteiro e retorne o numero primo imediatamente anterior ao número recebido
@@ -37,16 +37,38 @@ class Funcoes
 
      * */
     public function PrimoAnterior(int $numero): int {
+
+        $primo = 0;
+
+        if ($numero > 0) {
+            for ($i = $numero - 1; $i > 0; $i--) {
+                if ($this->Primo($i)) {
+                    $primo = $i;
+                    break;
+                }
+            }
+        }
+
+        return $primo;
         
     }
 
+    private function Primo(int $numero): bool {
 
+        $primo = true;
 
+        if ($numero > 0) {
+            for ($i = 2; $i < $numero; $i++) {
+                if ($numero % $i == 0) {
+                    $primo = false;
+                    break;
+                }
+            }
+        }
 
-
-
-
-
+        return $primo;
+        
+    }
 
 
     /*
@@ -66,14 +88,28 @@ class Funcoes
 
      * */
     public function SegundoMaior(array $arr): int {
+
+        $segundoMaior = 0;
+
+        if (count($arr) > 0) {
+            $maior = 0;
+            $segundoMaior = 0;
+            foreach ($arr as $key => $value) {
+                foreach ($value as $key2 => $value2) {
+                    if ($value2 > $maior) {
+                        $segundoMaior = $maior;
+                        $maior = $value2;
+                    } else if ($value2 > $segundoMaior) {
+                        $segundoMaior = $value2;
+                    }
+                }
+            }
+        }
+
+        return $segundoMaior;
+        
         
     }
-	
-	
-	
-	
-	
-	
 	
 
     /*
@@ -107,6 +143,23 @@ class Funcoes
      * */
     
 	public function SequenciaCrescente(array $arr): boolean {
+
+        $sequenciaCrescente = true;
+
+        if (count($arr) > 0) {
+            $qtd = 0;
+            for ($i = 0; $i < count($arr) - 1; $i++) {
+                if ($arr[$i] >= $arr[$i + 1]) {
+                    $qtd++;
+                }
+            }
+            if ($qtd > 1) {
+                $sequenciaCrescente = false;
+            }
+        }
+
+        return $sequenciaCrescente;
+        
         
     }
 }
